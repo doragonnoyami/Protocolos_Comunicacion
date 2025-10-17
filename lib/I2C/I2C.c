@@ -11,16 +11,16 @@ void i2c_init(I2C_TypeDef* I2Cx){
         RCC -> APB1ENR |= RCC_APB1ENR_I2C1EN;
         GPIOB -> CRL &=~ (0xF<<((SCL1)*4));
         GPIOB -> CRL &=~ (0xF<<((SDA1)*4));
-        GPIOB -> CRL |= (0xD<<((SCL1)*4));//salida alternativa open-drive
-        GPIOB -> CRL |= (0xD<<((SDA1)*4));//salida alternativa open-drive
+        GPIOB -> CRL |= (0xD<<((SCL1)*4));//salida alternativa open-drain
+        GPIOB -> CRL |= (0xD<<((SDA1)*4));//salida alternativa open-drain
     }
     else if(I2Cx == I2C2){
         RCC -> APB2ENR |= RCC_APB2ENR_IOPBEN;
         RCC -> APB1ENR |= RCC_APB1ENR_I2C2EN;
         GPIOB -> CRH &=~ (0xF<<((SCL2%8)*4));
         GPIOB -> CRH &=~ (0xF<<((SDA2%8)*4));
-        GPIOB -> CRH |= (0xD<<((SCL2%8)*4));//salida alternativa open-drive
-        GPIOB -> CRH |= (0xD<<((SDA2%8)*4));//salida alternativa open-drive
+        GPIOB -> CRH |= (0xD<<((SCL2%8)*4));//salida alternativa open-drain
+        GPIOB -> CRH |= (0xD<<((SDA2%8)*4));//salida alternativa open-drain
     }
     I2Cx->CR2 = 36;//Frecuencia del periférico en MHz
     I2Cx->CCR = 180;//Controla velocidad I2C
